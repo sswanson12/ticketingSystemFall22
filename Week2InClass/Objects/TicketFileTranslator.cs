@@ -12,7 +12,7 @@ public class TicketFileTranslator
         
         foreach (var ticket in ticketList)
         {
-            ticketString = $"{ticket.TicketId},{ticket.Summary},{ticket.Status},{ticket.Priority},{ticket.Submitter},{ticket.Assigned},";
+            ticketString += $"{ticket.TicketId},{ticket.Summary},{ticket.Status},{ticket.Priority},{ticket.Submitter},{ticket.Assigned},";
 
             foreach (var person in ticket.Watching)
             {

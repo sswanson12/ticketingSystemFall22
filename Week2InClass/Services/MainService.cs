@@ -17,13 +17,18 @@ public class MainService : IMainService
         
     public void Invoke()
     {
-        Console.WriteLine("Would you like to read or write?" +
-                          "\n(1) Read \n(2) Write");
-
+        //I tried organizing this pretty well. The only thing I think I would consider moving in here is the MakeTickets
+        //method that kind of is just there, and its long. Its not really something the "main service" should be doing.
+        //But, this is way over the top for something we're not going to look at too much again, so I cut myself some slack.
+        
         var restart = true;
         while (restart)
         {
             restart = false;
+            
+            Console.WriteLine("Would you like to read or write?" +
+                              "\n(1) Read \n(2) Write");
+            
             var choice = Console.ReadLine();
             
             switch (choice) 
@@ -35,9 +40,16 @@ public class MainService : IMainService
                     WriteFile();
                     break;
                 default:
-                    Console.WriteLine("Try entering either (1) to read, or (2) to write again.");
+                    Console.WriteLine("Try again.");
                     restart = true;
                     break;
+            }
+
+            Console.WriteLine("Would you like to restart? press (y) if yes, otherwise enter any other key and program will exit.");
+
+            if (Console.ReadLine()!.ToLower().Equals("y"))
+            {
+                restart = true;
             }
         }
 
@@ -53,6 +65,7 @@ public class MainService : IMainService
 
         void WriteFile()
         {
+            _ticketList = _ticketFileTranslator.MakeTickets(_fileService.Read());
             MakeTickets();
             _fileService.Write(_ticketFileTranslator.fileHead, _ticketFileTranslator.WriteTickets(_ticketList));
         }

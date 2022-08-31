@@ -46,6 +46,6 @@ public class Ticket
 
         return
             $"Ticket ID: {ticketId} - Summary: {summary} - Status: {status} - Priority: {priority} - Submitter: {submitter} - " +
-            $"Assigned: {assigned} - Watching: {watchingString.Substring(0, watchingString.Length - 1)}";
+            $"Assigned: {assigned} - Watching: {watchingString.Substring(0, watchingString.Length - 2)}";
     }
 }

@@ -2,6 +2,7 @@
 
 public class FileService : IFileService
 {
+    //I tried to keep this as bare as possible. All I wanted it doing was reading and writing.
     private string file;
 
     public FileService(string file)
